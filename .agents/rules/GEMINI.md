@@ -50,7 +50,7 @@ class SomeViewSet(ModelViewSet):
         elif self.action == "custom_action":
             return CustomActionFilterSet
         return FilterSet
-    
+
     @action(detail=False, ...)
     def custom_action(self, request, *args, **kwargs):
         return Response(...)
@@ -58,7 +58,8 @@ class SomeViewSet(ModelViewSet):
 
 ## 🚫 Forbidden
 - ❌ No new dependencies without approval.
-- ❌ No direct commits to `master`.
+- ❌ No direct commits or pushes to protected branches like `master` by you.
+- ❌ DO NOT perform any Git operations that modify the repository (e.g., add, commit, push) unless explicitly instructed by me.
 
 ## 🧪 Testing Guidelines
 - **Mandatory**: Every code change must have tests.
