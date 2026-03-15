@@ -21,8 +21,9 @@ EXTERNAL_APPS = [
     "drf_yasg",
     "django_celery_beat",
     "django_celery_results",
+    "pytest",
 ]
 
-INTERNAL_APPS = []
+INTERNAL_APPS = ["apps.tax_compliance",]
 
 INSTALLED_APPS = DJANGO_APPs + EXTERNAL_APPS + INTERNAL_APPS
