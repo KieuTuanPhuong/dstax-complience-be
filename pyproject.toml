@@ -56,6 +56,20 @@ known-first-party = ["apps", "libs", "settings"]
 quote-style = "double"
 indent-style = "space"
 
+[tool.bandit]
+exclude_dirs = [
+    "**/tests/**",
+    "**/test_*.py",
+    "**/migrations/**",
+    ".venv",
+    "venv",
+    "env",
+    ".env",
+    "**/migrations/**",
+    "scripts",
+]
+
+
 [tool.poetry]
 name = "compliance"
 version = "0.1.0"
