@@ -1,5 +1,5 @@
-from .base import BaseModels
+from .base import BaseModel
 
 __all__ = [
-    "BaseModels",
+    "BaseModel",
 ]
