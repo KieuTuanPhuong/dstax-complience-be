@@ -5,6 +5,7 @@ from rest_framework import status
 from ..factories import (
     FilingFrequencyFactory,
     FilingTypeFactory,
+    JurisdictionFactory,
     JurisdictionLevelFactory,
     PrepaymentMethodFactory,
     TaxTypeFactory,
@@ -65,3 +66,26 @@ class TestMasterDataViewSets:
         results = data.get("results") if isinstance(data, dict) and "results" in data else data
         assert len(results) == 1
         assert results[0]["method_description"] == "Visa Card"
+
+    @pytest.mark.parametrize(
+        "url_name,factory_class,time",
+        [
+            ("filingfrequency-list", FilingFrequencyFactory, "2024-01-01T00:00:00Z"),
+            ("filingtype-list", FilingTypeFactory, "2024-01-01T00:00:00Z"),
+            ("jurisdictionlevel-list", JurisdictionLevelFactory, "2024-01-01T00:00:00Z"),
+            ("taxtype-list", TaxTypeFactory, "2024-01-01T00:00:00Z"),
+            ("jurisdiction-list", JurisdictionFactory, "2024-01-01T00:00:00Z"),
+            ("prepaymentmethod-list", PrepaymentMethodFactory, "2024-01-01T00:00:00Z"),
+        ],
+    )
+    def test_master_data_list_and_filter_created_at(self, client, url_name, factory_class, time):
+        factory_class.create_batch(3)
+
+        url = reverse(url_name)
+        created_at_url = f"{url}?created_at__gt={time}"
+        # Test List
+        response = client.get(created_at_url)
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        results = data.get("results") if isinstance(data, dict) and "results" in data else data
+        assert len(results) >= 3

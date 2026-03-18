@@ -10,5 +10,6 @@ class JurisdictionFilter(filters.FilterSet):
             "id": ["exact", "in"],
             "name": ["exact", "icontains"],
             "level": ["exact", "in"],
-            "due_date_time": ["exact", "year__gt", "year__lt"],
+            "due_date_time": ["exact"],
+            "created_at": ["exact", "gte", "lte"],
         }

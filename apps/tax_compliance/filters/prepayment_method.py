@@ -10,4 +10,5 @@ class PrepaymentMethodFilter(filters.FilterSet):
             "id": ["exact", "in"],
             "jurisdiction": ["exact", "in"],
             "method_description": ["exact", "icontains"],
+            "created_at": ["exact", "gte", "lte"],
         }

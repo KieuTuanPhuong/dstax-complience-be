@@ -9,4 +9,5 @@ class FilingTypeFilter(filters.FilterSet):
         fields = {
             "id": ["exact", "in"],
             "name": ["exact", "icontains"],
+            "created_at": ["exact", "gte", "lte"],
         }

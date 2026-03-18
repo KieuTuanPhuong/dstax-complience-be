@@ -5,5 +5,5 @@ from ..models.filing_frequency import FilingFrequency
 
 @admin.register(FilingFrequency)
 class FilingFrequencyAdmin(admin.ModelAdmin):
-    list_display = ["id", "code"]
-    odering = ["id", "code"]
+    list_display = ["id", "code", "created_at", "updated_at"]
+    odering = ["id", "code", "created_at", "updated_at"]

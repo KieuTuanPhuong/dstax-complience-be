@@ -9,4 +9,5 @@ class FilingFrequencyFilter(filters.FilterSet):
         fields = {
             "id": ["exact", "in"],
             "code": ["exact", "icontains"],
+            "created_at": ["exact", "gte", "lte"],
         }
