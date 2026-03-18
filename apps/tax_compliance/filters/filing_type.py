@@ -1,9 +1,9 @@
-from django_filters import rest_framework as filters
+import django_filters
 
 from ..models import FilingType
 
 
-class FilingTypeFilter(filters.FilterSet):
+class FilingTypeFilter(django_filters.FilterSet):
     class Meta:
         model = FilingType
         fields = {

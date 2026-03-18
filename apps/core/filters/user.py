@@ -1,10 +1,10 @@
-from django_filters import rest_framework as filters
+import django_filters
 
 from ..models import User
 
 
-class UserFilter(filters.FilterSet):
-    assigned_legal_entities = filters.CharFilter(method="filter_assigned_legal_entities")
+class UserFilter(django_filters.FilterSet):
+    assigned_legal_entities = django_filters.CharFilter(method="filter_assigned_legal_entities")
 
     class Meta:
         model = User

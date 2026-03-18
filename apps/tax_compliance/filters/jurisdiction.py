@@ -1,9 +1,9 @@
-from django_filters import rest_framework as filters
+import django_filters
 
 from ..models import Jurisdiction
 
 
-class JurisdictionFilter(filters.FilterSet):
+class JurisdictionFilter(django_filters.FilterSet):
     class Meta:
         model = Jurisdiction
         fields = {

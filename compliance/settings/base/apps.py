@@ -18,7 +18,7 @@ EXTERNAL_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "drf_standardized_errors",
-    "drf_yasg",
+    "drf_spectacular",
     "django_celery_beat",
     "django_celery_results",
     "pytest",

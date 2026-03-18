@@ -1,9 +1,9 @@
-from django_filters import rest_framework as filters
+import django_filters
 
 from ..models import PrepaymentMethod
 
 
-class PrepaymentMethodFilter(filters.FilterSet):
+class PrepaymentMethodFilter(django_filters.FilterSet):
     class Meta:
         model = PrepaymentMethod
         fields = {
