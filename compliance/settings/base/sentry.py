@@ -1,9 +1,7 @@
 from .base import ENVIRONMENT, config
 
 SENTRY_DSN = config("SENTRY_DSN", default="")
-SENTRY_TRACES_SAMPLE_RATE = config(
-    "SENTRY_TRACES_SAMPLE_RATE", default=0.5, cast=float
-)
+SENTRY_TRACES_SAMPLE_RATE = config("SENTRY_TRACES_SAMPLE_RATE", default=0.5, cast=float)
 SENTRY_SAMPLE_RATE = config("SENTRY_SAMPLE_RATE", default=0.5, cast=float)
 SENTRY_ENVIRONMENT = config("SENTRY_ENVIRONMENT", default=ENVIRONMENT)
 

@@ -24,6 +24,9 @@ EXTERNAL_APPS = [
     "pytest",
 ]
 
-INTERNAL_APPS = ["apps.core", "apps.tax_compliance",]
+INTERNAL_APPS = [
+    "apps.core",
+    "apps.tax_compliance",
+]
 
 INSTALLED_APPS = DJANGO_APPs + EXTERNAL_APPS + INTERNAL_APPS
