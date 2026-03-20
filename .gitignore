@@ -102,3 +102,8 @@ webpack-stats.json
 # Temp
 .temp
 temp
+
+# AI Agents stuffs
+.planning
+.opencode
+.gemini
