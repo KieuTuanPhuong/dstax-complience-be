@@ -14,3 +14,4 @@ from .password import *
 from .sentry import *
 from .static import *
 from .templates import *
+from .email import *

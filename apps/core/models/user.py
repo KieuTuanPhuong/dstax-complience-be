@@ -1,4 +1,6 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from libs.models import BaseModel
 
@@ -10,12 +12,21 @@ class Role(models.TextChoices):
     CLIENT_STAFF = "CLIENT_STAFF", "Client_Staff"
 
 
-class User(BaseModel):
+class User(AbstractUser, BaseModel):
+    email = models.EmailField(_("email address"), unique=True)
     role = models.CharField(max_length=20, choices=Role.choices)
     managed_client = models.ForeignKey(
         "Client", blank=True, null=True, on_delete=models.SET_NULL, related_name="users"
     )
     assigned_legal_entities = models.ManyToManyField("LegalEntity", blank=True, related_name="users")
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
+
+    def save(self, *args, **kwargs):
+        if self.email and not self.username:
+            self.username = self.email
+        super().save(*args, **kwargs)
 
     @property
     def is_dstax_admin(self):

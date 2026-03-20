@@ -6,6 +6,7 @@ from apps.core.models import (
     LegalEntity,
     User,
 )
+from apps.core.models.user import Role
 
 
 class ClientFactory(DjangoModelFactory):
@@ -27,6 +28,9 @@ class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
+    email = factory.Sequence(lambda n: f"user{n}@example.com")
+    username = factory.Sequence(lambda n: f"user{n}")
+    role = Role.DSTAX_ADMIN
     managed_client = factory.SubFactory(ClientFactory)
 
     @factory.post_generation
