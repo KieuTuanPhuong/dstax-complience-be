@@ -105,6 +105,7 @@ django-celery-results = "^2.5.1"
 ruff = "^0.15.4"
 ty = "^0.0.20"
 drf-spectacular = "^0.29.0"
+gunicorn = "^25.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.3"
