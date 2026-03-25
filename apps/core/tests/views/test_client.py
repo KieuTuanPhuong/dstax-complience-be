@@ -50,3 +50,44 @@ class TestClientViewSet:
         results = data.get("results") if isinstance(data, dict) and "results" in data else data
         assert len(results) == 1
         assert results[0]["name"] == "DS_TAX"
+
+
+@pytest.mark.django_db
+class TestClientPagination:
+    def test_pagination_default(self, client):
+        ClientFactory.create_batch(30)
+        url = reverse("client-list")
+        response = client.get(url)
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert "count" in data
+        assert "results" in data
+        assert data["count"] == 30
+        assert len(data["results"]) == 25
+
+    def test_pagination_custom_page_size(self, client):
+        ClientFactory.create_batch(30)
+        url = reverse("client-list")
+        response = client.get(f"{url}?page_size=10")
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert len(data["results"]) == 10
+        assert data["count"] == 30
+
+    def test_pagination_max_page_size(self, client):
+        ClientFactory.create_batch(150)
+        url = reverse("client-list")
+        response = client.get(f"{url}?page_size=200")
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert len(data["results"]) == 100
+
+    def test_pagination_navigation(self, client):
+        ClientFactory.create_batch(50)
+        url = reverse("client-list")
+        response = client.get(f"{url}?page=2")
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert data["previous"] is not None
+        assert data["next"] is None
+        assert len(data["results"]) == 25
